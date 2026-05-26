@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Best Western Harbour Pointe Lakefront — Review Rewards</title>
+<style>
+  :root{
+    --navy:#0b3a66; --navy2:#0a4f8a; --gold:#c9a24b; --gold2:#e0bd63;
+    --ink:#1c2733; --muted:#6b7785; --line:#e7ebf0; --bg:#eef2f6; --card:#fff;
+    --good:#1f8a4c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased;
+    line-height:1.45;}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px 48px}
+
+  /* lock screen */
+  #lock{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+    background:linear-gradient(160deg,var(--navy),var(--navy2));}
+  .lockcard{background:var(--card);border-radius:18px;padding:34px 28px;max-width:380px;width:100%;
+    box-shadow:0 18px 50px rgba(8,30,60,.35);text-align:center}
+  .lockcard .crest{width:54px;height:54px;border-radius:50%;margin:0 auto 14px;
+    background:linear-gradient(150deg,var(--gold),var(--gold2));display:flex;align-items:center;
+    justify-content:center;font-size:26px;box-shadow:0 6px 16px rgba(201,162,75,.45)}
+  .lockcard h1{font-size:19px;margin:0 0 4px;color:var(--navy)}
+  .lockcard p{color:var(--muted);font-size:14px;margin:0 0 20px}
+  .lockcard input{width:100%;padding:13px 14px;font-size:16px;border:1.5px solid var(--line);
+    border-radius:11px;outline:none;text-align:center;letter-spacing:.04em}
+  .lockcard input:focus{border-color:var(--navy2)}
+  .lockcard button{width:100%;margin-top:12px;padding:13px;font-size:16px;font-weight:650;
+    color:#fff;background:var(--navy);border:0;border-radius:11px;cursor:pointer}
+  .lockcard button:active{transform:translateY(1px)}
+  .err{color:#c0392b;font-size:13.5px;min-height:18px;margin-top:10px}
+
+  /* header */
+  header.top{background:linear-gradient(155deg,var(--navy),var(--navy2));color:#fff;
+    padding:26px 0 70px;text-align:center}
+  header.top .eyebrow{color:var(--gold2);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;margin-bottom:6px}
+  header.top h1{margin:0;font-size:21px;font-weight:700}
+  header.top .rule{max-width:560px;margin:12px auto 0;color:#d7e3f1;font-size:14px;padding:0 18px}
+
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:-52px}
+  .stat{background:var(--card);border-radius:15px;padding:16px 12px;text-align:center;
+    box-shadow:0 8px 24px rgba(11,58,102,.10)}
+  .stat .n{font-size:23px;font-weight:800;color:var(--navy);line-height:1}
+  .stat .n.money{color:var(--good)}
+  .stat .l{font-size:11.5px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+  .period{text-align:center;color:var(--muted);font-size:12.5px;margin:16px 0 4px}
+
+  /* leaderboard */
+  h2.sec{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    margin:26px 4px 10px;font-weight:700}
+  .board{display:flex;flex-direction:column;gap:9px}
+  .row{background:var(--card);border-radius:13px;box-shadow:0 3px 12px rgba(11,58,102,.07);
+    overflow:hidden;border:1px solid transparent}
+  .row.top1{border-color:var(--gold);box-shadow:0 6px 20px rgba(201,162,75,.22)}
+  .rowhead{display:flex;align-items:center;gap:12px;padding:13px 15px;cursor:pointer;user-select:none}
+  .rank{font-size:15px;font-weight:800;color:var(--muted);width:30px;text-align:center;flex:none}
+  .rank.medal{font-size:20px}
+  .who{flex:1;min-width:0}
+  .who .nm{font-weight:680;font-size:15.5px;color:var(--ink)}
+  .who .ro{font-size:12px;color:var(--muted);margin-top:1px}
+  .cnt{text-align:center;flex:none;width:74px}
+  .cnt .c{font-weight:750;font-size:15px}
+  .cnt .cl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .pay{font-weight:820;font-size:17px;color:var(--good);flex:none;min-width:76px;text-align:right}
+  .pay.zero{color:#b6bec8}
+  .chev{flex:none;color:#c2cad4;transition:transform .18s;font-size:13px;width:14px}
+  .row.open .chev{transform:rotate(90deg)}
+  .detail{display:none;padding:2px 15px 14px;border-top:1px solid var(--line)}
+  .row.open .detail{display:block}
+  .rev{padding:11px 0;border-bottom:1px dashed var(--line)}
+  .rev:last-child{border-bottom:0}
+  .rev .meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .badge{background:#eef3f9;color:var(--navy2);border-radius:6px;padding:1px 7px;font-weight:650;font-size:11px}
+  .badge.star{background:#fff6e3;color:#9a7b25}
+  .badge.share{background:#e7f6ee;color:var(--good)}
+  .rev .txt{font-size:13.5px;color:#3a4654;margin-top:5px;font-style:italic}
+  .empty{background:var(--card);border-radius:13px;padding:28px;text-align:center;color:var(--muted)}
+  .more{margin:14px auto 0;display:block;background:none;border:1px solid var(--line);
+    color:var(--muted);padding:9px 16px;border-radius:20px;font-size:13px;cursor:pointer}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px;padding-top:8px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<div id="lock">
+  <form class="lockcard" id="lockform">
+    <div class="crest">&#9733;</div>
+    <h1>Best Western Harbour Pointe Lakefront</h1>
+    <p>Enter the staff passcode to see your review rewards.</p>
+    <input id="pass" type="password" inputmode="text" autocomplete="off"
+           autocapitalize="off" placeholder="Passcode" aria-label="Passcode">
+    <button type="submit" id="go">View rewards</button>
+    <div class="err" id="err"></div>
+  </form>
+</div>
+
+<main id="app" class="hidden">
+  <header class="top">
+    <div class="eyebrow">Guest Review Rewards</div>
+    <h1 id="hHotel"></h1>
+    <div class="rule" id="hRule"></div>
+  </header>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n money" id="sPaid"></div><div class="l">Paid out</div></div>
+      <div class="stat"><div class="n" id="sRev"></div><div class="l">Reviews earned</div></div>
+      <div class="stat"><div class="n" id="sStaff"></div><div class="l">Staff earning</div></div>
+    </div>
+    <div class="period" id="sPeriod"></div>
+
+    <h2 class="sec">Leaderboard</h2>
+    <div class="board" id="board"></div>
+    <button class="more hidden" id="toggleZero"></button>
+
+    <footer id="foot"></footer>
+  </div>
+</main>
+
+<script>
+const ENC = {"salt": "gJe19gv6KIBQlfejjwJ4hw==", "iv": "hZjcs2HDJmQdFMuB", "ct": "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", "iter": 200000};
+
+function b64(s){ return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
+
+async function decryptData(passcode){
+  const salt = b64(ENC.salt), iv = b64(ENC.iv), ct = b64(ENC.ct);
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(passcode),
+                 "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    {name:"PBKDF2", salt, iterations: ENC.iter, hash:"SHA-256"},
+    base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, ct);
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+function esc(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function prettyDate(iso){
+  if(!iso) return "";
+  const d = new Date(iso + "T00:00:00");
+  return isNaN(d) ? esc(iso)
+    : d.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+}
+
+let SHOW_ZERO = false;
+let DATA = null;
+
+function render(data){
+  DATA = data;
+  document.getElementById("hHotel").textContent = data.hotel || "";
+  document.getElementById("hRule").textContent  = data.rule || "";
+  const t = data.totals || {};
+  document.getElementById("sPaid").textContent  = t.total_payout || "$0.00";
+  document.getElementById("sRev").textContent   = t.paying_reviews || 0;
+  document.getElementById("sStaff").textContent = t.employees_earning || 0;
+  const p = data.period || {};
+  document.getElementById("sPeriod").textContent =
+    (p.start && p.end) ? ("Reviews from " + prettyDate(p.start) + " – " + prettyDate(p.end)) : "";
+  document.getElementById("foot").textContent =
+    "Updated " + (data.generated_at || "") + " · Rewards reflect guest reviews that name you.";
+  drawBoard();
+}
+
+function drawBoard(){
+  const board = document.getElementById("board");
+  const all = DATA.employees || [];
+  const earners = all.filter(e => e.payout_cents > 0);
+  const zeros   = all.filter(e => e.payout_cents <= 0);
+  const list = SHOW_ZERO ? all : earners;
+  board.innerHTML = "";
+
+  if(!earners.length && !SHOW_ZERO){
+    board.innerHTML = '<div class="empty">No rewards yet — they’ll appear here as guest reviews come in.</div>';
+  }
+  const medals = ["🥇","🥈","🥉"];
+  list.forEach((e, i) => {
+    const isEarner = e.payout_cents > 0;
+    const rankEarnerIdx = earners.indexOf(e);
+    const medal = (isEarner && rankEarnerIdx < 3) ? medals[rankEarnerIdx] : "";
+    const rankTxt = medal || (isEarner ? (rankEarnerIdx + 1) : "–");
+    const items = (e.items || []).map(it => `
+      <div class="rev">
+        <div class="meta">
+          <span>${prettyDate(it.date)}</span>
+          <span class="badge">${esc(it.platform)}</span>
+          <span class="badge star">${esc(it.score)} ★</span>
+          <span class="badge share">+${esc(it.share)}</span>
+        </div>
+        ${it.snippet ? `<div class="txt">“${esc(it.snippet)}”</div>` : ""}
+      </div>`).join("");
+    const row = document.createElement("div");
+    row.className = "row" + ((isEarner && rankEarnerIdx === 0) ? " top1" : "");
+    row.innerHTML = `
+      <div class="rowhead">
+        <div class="rank ${medal ? "medal" : ""}">${rankTxt}</div>
+        <div class="who">
+          <div class="nm">${esc(e.name)}</div>
+          ${e.role ? `<div class="ro">${esc(e.role)}</div>` : ""}
+        </div>
+        <div class="cnt"><div class="c">${e.reviews}</div><div class="cl">reviews</div></div>
+        <div class="pay ${isEarner ? "" : "zero"}">${esc(e.payout)}</div>
+        <div class="chev">${items ? "›" : ""}</div>
+      </div>
+      ${items ? `<div class="detail">${items}</div>` : ""}`;
+    if(items){
+      row.querySelector(".rowhead").addEventListener("click", () => row.classList.toggle("open"));
+    }
+    board.appendChild(row);
+  });
+
+  const btn = document.getElementById("toggleZero");
+  if(zeros.length){
+    btn.classList.remove("hidden");
+    btn.textContent = SHOW_ZERO
+      ? "Hide staff with no rewards yet"
+      : ("Show all staff (" + zeros.length + " not earning yet)");
+  } else {
+    btn.classList.add("hidden");
+  }
+}
+
+document.getElementById("toggleZero").addEventListener("click", () => {
+  SHOW_ZERO = !SHOW_ZERO; drawBoard();
+});
+
+async function unlock(passcode){
+  const err = document.getElementById("err");
+  err.textContent = "";
+  try{
+    const data = await decryptData(passcode);
+    try{ sessionStorage.setItem("rev_pc", passcode); }catch(_){}
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    render(data);
+  }catch(e){
+    err.textContent = "Wrong passcode — try again.";
+    const inp = document.getElementById("pass"); inp.value = ""; inp.focus();
+  }
+}
+
+document.getElementById("lockform").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const pc = document.getElementById("pass").value.trim();
+  if(pc) unlock(pc);
+});
+
+// auto-unlock within the same tab session
+(function(){
+  let saved = null;
+  try{ saved = sessionStorage.getItem("rev_pc"); }catch(_){}
+  if(saved) unlock(saved);
+})();
+</script>
+</body>
+</html>
